@@ -1,0 +1,8 @@
+# TV eşleştirme anahtarı (gizli) ve yerel yükleme kaydı
+tv-token.txt
+uploaded.json
+
+.venv/
+__pycache__/
+*.pyc
+*.log

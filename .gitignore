@@ -1,6 +1,7 @@
-# TV eşleştirme anahtarı (gizli) ve yerel yükleme kaydı
+# TV pairing token (secret), local upload log and per-user settings
 tv-token.txt
 uploaded.json
+settings.json
 
 .venv/
 __pycache__/

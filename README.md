@@ -23,6 +23,12 @@ TV ile bilgisayar aynı ağda olmalı. TV'nin IP adresi `upload.py` içindeki `H
   .venv/bin/python upload.py --dry-run  # sadece hazırla, gönderme
   ```
 
+## Dil
+
+Arayüz İngilizce ve Türkçe destekliyor. İlk açılışta sistem dili kullanılır (Türkçe sistemde Türkçe, diğerlerinde İngilizce), sonra uygulamanın sağ altındaki **Dil** menüsünden değiştirilebilir. Seçim `settings.json` dosyasına kaydedilir ve `upload.py` ile `connect.py` de aynı dili kullanır.
+
+Yeni bir dil eklemek için `i18n.py` içindeki `STRINGS` sözlüğüne aynı anahtarlarla yeni bir bölüm ve `LANGUAGE_NAMES`'e adını ekleyin. Kod, yorumlar ve tanımlayıcılar İngilizce tutulur; kullanıcıya görünen tüm metinler `i18n.py`'den gelir.
+
 ## Dosyalar
 
 | Dosya | Görevi |
@@ -30,9 +36,11 @@ TV ile bilgisayar aynı ağda olmalı. TV'nin IP adresi `upload.py` içindeki `H
 | `frame_app.py` | tkinter masaüstü uygulaması |
 | `upload.py` | Resim hazırlama (`prepare`) ve klasörden toplu yükleme |
 | `connect.py` | İlk eşleştirme ve bağlantı testi |
+| `i18n.py` | Çeviriler (İngilizce, Türkçe) ve dil seçimi |
 | `install.sh` | Sanal ortam ve menü kısayolu kurulumu |
 | `tv-token.txt` | TV eşleştirme anahtarı (git'e girmez) |
 | `uploaded.json` | Yüklenen dosya → TV içerik kimliği (`MY_F####`) kaydı (git'e girmez) |
+| `settings.json` | Seçilen dil (git'e girmez) |
 
 ## Notlar
 

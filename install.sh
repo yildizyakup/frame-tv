@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Sanal ortamı kurar ve uygulamayı masaüstü menüsüne "Frame TV" olarak ekler.
+# Sets up the virtualenv and adds the app to the desktop menu as "Frame TV".
 set -euo pipefail
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
@@ -13,7 +13,8 @@ cat > "$APPS/frame-tv.desktop" <<DESKTOP
 [Desktop Entry]
 Type=Application
 Name=Frame TV
-Comment=Resim seç, Samsung The Frame'de Sanat Modu'nda göster
+Comment=Choose an image and show it in Art Mode on a Samsung The Frame
+Comment[tr]=Resim seç, Samsung The Frame'de Sanat Modu'nda göster
 Exec="$DIR/.venv/bin/python" "$DIR/frame_app.py"
 Path=$DIR
 Icon=video-display
@@ -21,5 +22,5 @@ Terminal=false
 Categories=Graphics;Utility;
 DESKTOP
 
-echo "Kurulum tamam. Menüde 'Frame TV' olarak görünecek."
-echo "İlk kez bağlanıyorsanız: .venv/bin/python connect.py (TV ekranında İzin Ver'e basın)"
+echo "Done. The app shows up in the menu as 'Frame TV'."
+echo "First time? Run .venv/bin/python connect.py and press Allow on the TV screen."

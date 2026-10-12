@@ -34,6 +34,7 @@ STRINGS = {
         "delete_from_tv": "Delete from TV",
         "language": "Language:",
         "error": "Error: {error}",
+        "need_host": "TV address not set. Run: connect.py <TV IP address>  (or set FRAME_TV_HOST)",
         "dialog_title": "Choose an image to send to the TV",
         "images": "Images",
         "mode_crop": "cropped",
@@ -79,6 +80,7 @@ STRINGS = {
         "delete_from_tv": "TV'den Sil",
         "language": "Dil:",
         "error": "Hata: {error}",
+        "need_host": "TV adresi ayarlı değil. Çalıştır: connect.py <TV IP adresi>  (ya da FRAME_TV_HOST ayarla)",
         "dialog_title": "TV'ye gönderilecek resmi seç",
         "images": "Resimler",
         "mode_crop": "kırpıldı",
@@ -106,7 +108,7 @@ STRINGS = {
 }
 
 
-def _load_settings():
+def load_settings():
     try:
         with open(SETTINGS_FILE) as f:
             return json.load(f)
@@ -125,7 +127,7 @@ def _system_language():
 
 
 def _initial_language():
-    lang = _load_settings().get("language")
+    lang = load_settings().get("language")
     return lang if lang in STRINGS else _system_language()
 
 
@@ -142,8 +144,12 @@ def set_language(lang):
     if lang not in STRINGS:
         raise ValueError(f"Unsupported language: {lang}")
     _current = lang
-    settings = _load_settings()
-    settings["language"] = lang
+    save_setting("language", lang)
+
+
+def save_setting(key, value):
+    settings = load_settings()
+    settings[key] = value
     with open(SETTINGS_FILE, "w") as f:
         json.dump(settings, f, indent=2)
 

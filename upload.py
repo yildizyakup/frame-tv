@@ -14,7 +14,7 @@ import warnings
 from PIL import Image, ImageOps
 from samsungtvws import SamsungTVWS
 
-from i18n import t
+from i18n import load_settings, t
 
 warnings.filterwarnings("ignore", message="Unverified HTTPS request")
 
@@ -24,7 +24,8 @@ try:
 except ImportError:
     pass
 
-HOST = "192.168.1.104"
+# TV address: FRAME_TV_HOST, or "host" in settings.json (connect.py saves it)
+HOST = os.environ.get("FRAME_TV_HOST") or load_settings().get("host")
 BASE = os.path.dirname(os.path.abspath(__file__))
 TOKEN_FILE = os.path.join(BASE, "tv-token.txt")
 STATE_FILE = os.path.join(BASE, "uploaded.json")
@@ -76,6 +77,8 @@ def save_state(state):
 
 
 def connect_art():
+    if not HOST:
+        sys.exit(t("need_host"))
     tv = SamsungTVWS(host=HOST, port=8002, token_file=TOKEN_FILE, name="Claude", timeout=60)
     return tv.art()
 

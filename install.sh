@@ -23,4 +23,4 @@ Categories=Graphics;Utility;
 DESKTOP
 
 echo "Done. The app shows up in the menu as 'Frame TV'."
-echo "First time? Run .venv/bin/python connect.py and press Allow on the TV screen."
+echo "First time? Run .venv/bin/python connect.py <TV IP address> and press Allow on the TV screen."
